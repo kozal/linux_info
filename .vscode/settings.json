@@ -1,0 +1,23 @@
+{
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "--login",
+        "--init-file",
+        "C:\\Program Files\\Git\\etc\\profile"
+    ],
+    "editor.rulers": [
+        79,
+        119
+    ],
+    "editor.scrollBeyondLastLine": true,
+    "markdownlint.config": {
+        "MD013": false,
+        "MD014": false,
+        "MD031": false,
+        "MD032": false
+    },
+    // "cSpell.enabled": false,
+    // "cSpell.enabled": true,
+    "markdown-preview-enhanced.enableCriticMarkupSyntax": false,
+    "markdown-preview-enhanced.scrollSync": false
+}
