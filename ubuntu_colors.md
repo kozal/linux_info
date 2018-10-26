@@ -47,7 +47,7 @@ then in `~/.dircolors` change line
 OTHER_WRITABLE 01;34 # dir that is other-writable (o+w) and not sticky
 ```
 
-## PS1  (Prompt String 1)
+## PS1 (Prompt String 1)
 
 in `~/.bashrc` change
 
@@ -94,3 +94,7 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 ```
+
+not sure if `PS1='${debian_chroot:+($debian_chroot)}'` is needed.
+
+if you forget to put `\` backslash before the `$(parse_git_branch)`, it will be evaluated only once and wotn be updated.
