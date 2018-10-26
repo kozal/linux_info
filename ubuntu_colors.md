@@ -80,14 +80,15 @@ parse_git_branch() {
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1="\[\033]0;\w\007\]";            # header of window
+    PS1='${debian_chroot:+($debian_chroot)}'
+    PS1+="\[\033]0;\w\007\]";           # header of window
     PS1+="${Color_Off}\n";              # newline
     PS1+="${Yellow}\u";                 # user name
     PS1+="${Color_Off}@${Time24hm} ";   # time
     PS1+="${Color_Off}in ";
     PS1+="${Cyan}\w";                   # working dir all
     #PS1+="${BGreen}\W";                # working dir base
-    PS1+="${Red}$(parse_git_branch)" # git branch
+    PS1+="${Red}\$(parse_git_branch)" # git branch
     PS1+="${Color_Off}\n\$ "            # next line and prompt sign
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
