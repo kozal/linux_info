@@ -1,5 +1,13 @@
 # Linux general
 
+## add commands
+
+shopt, eval, chmod, chown
+```bash
+$ chmod u=rwx,g=rx,o=r myfile
+$ chmod 754 myfile
+```
+
 ## file descriptor
 
 Whenever you execute a program, operating system always opens three files `STDIN`, `STDOUT`, and `STDERR` as we know whenever a file is opened, operating system (from kernel) returns a non-negative integer called as `File Descriptor`. The file descriptor for these files are 0, 1, 2 respectively.
