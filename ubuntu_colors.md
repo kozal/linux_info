@@ -63,21 +63,32 @@ to
 
 ```bash
 Color_Off="\[\033[0m\]"       # Text Reset
+Red="\[\033[0;31m\]"          # Red
+BRed="\[\033[1;31m\]"         # Red
+Yellow="\[\033[0;33m\]"       # Yellow
 BYellow="\[\033[1;33m\]"      # Yellow
+Green="\[\033[0;32m\]"        # Green
 BGreen="\[\033[1;32m\]"       # Green
-BIYellow="\[\033[1;93m\]"     # Yellow
-IYellow="\[\033[0;93m\]"      # Yellow
+Cyan="\[\033[0;36m\]"         # Cyan
+BCyan="\[\033[1;36m\]"        # Cyan
+
 Time24hm="\A"                 # 24-hour HH:MM
+
+parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS1="\[\033]0;\w\007\]";            # header of window
     PS1+="${Color_Off}\n";              # newline
-    PS1+="${IYellow}omer";              # user name
+    PS1+="${Yellow}\u";                 # user name
     PS1+="${Color_Off}@${Time24hm} ";   # time
     PS1+="${Color_Off}in ";
-    PS1+="${BGreen}\W";                 # working dir
-    PS1+="${Color_Off}\n\$ "
+    PS1+="${Cyan}\w";                   # working dir all
+    #PS1+="${BGreen}\W";                # working dir base
+    PS1+="${Red}$(parse_git_branch)" # git branch
+    PS1+="${Color_Off}\n\$ "            # next line and prompt sign
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
