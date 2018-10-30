@@ -88,7 +88,7 @@ if [ "$color_prompt" = yes ]; then
     PS1+="${Color_Off}in ";
     PS1+="${Cyan}\w";                   # working dir all
     #PS1+="${BGreen}\W";                # working dir base
-    PS1+="${Red}\$(parse_git_branch)" # git branch
+    PS1+="${Red} \$(parse_git_branch)" # git branch
     PS1+="${Color_Off}\n\$ "            # next line and prompt sign
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
