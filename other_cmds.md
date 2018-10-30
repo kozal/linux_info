@@ -2,11 +2,7 @@
 
 ## add commands
 
-shopt, eval, chmod, chown
-```bash
-$ chmod u=rwx,g=rx,o=r myfile
-$ chmod 754 myfile
-```
+shopt, eval, chown
 
 ## file descriptor
 
@@ -108,6 +104,64 @@ $ false || echo false!
 false!
 ```
 
+## chmod
+
+chmod changes the permissions of each given *file* according to *mode*
+
+```bash
+chmod options mode file
+```
+
+`751 = -rwxr-x--x`
+
+Numeric mode
+: Any omitted digits are assumed to be leading zeros.
+  **The first digit** = selects attributes for the set user ID (4) and set group ID (2) and save text image (1)S
+  **The second digit** = permissions for the user who owns the file: read (4), write (2), and execute (1)
+  **The third digit** = permissions for other users in the file's group: read (4), write (2), and execute (1)
+  **The fourth digit** = permissions for other users NOT in the file's group: read (4), write (2), and execute (1)
+
+```bash
+# Allow read permission to owner and group and world
+$ chmod 444 <file>
+```
+
+Symbolic Mode
+: symbolic mode is a combination of the letters `+-= rwxXstugoa`
+  Multiple symbolic operations can be given, separated by commas
+
+| User                                | letter |
+| ----------------------------------- | ------ |
+| The user who owns it                | u      |
+| Other users in the file's Group     | g      |
+| Other users not in the file's group | o      |
+| All users                           | a      |
+
+| Permission                                                                                | letter |
+| ----------------------------------------------------------------------------------------- | ------ |
+| Read                                                                                      | r      |
+| Write                                                                                     | w      |
+| Execute (or access for directories)                                                       | x      |
+| Execute only if the file is a directory (or already has execute permission for some user) | X      |
+| Set user or group ID on execution                                                         | s      |
+| Restricted deletion flag or sticky bit                                                    | t      |
+| The permissions that the User who owns the file currently has for it                      | u      |
+| The permissions that other users in the file's Group have for it                          | g      |
+| Permissions that Other users not in the file's group have for it                          | o      |
+
+```bash
+# Deny execute permission to everyone:
+$ chmod a-x <file>
+# Allow read permission to everyone:
+$ chmod a+r <file>
+# Make a file readable and writable by the group and others:
+$ chmod go+rw <file>
+# Make a shell script executable by the user/owner
+$ chmod u+x myscript.sh
+# Allow everyone to read, write, and execute the file and turn on the set group-ID:
+$ chmod =rwx,g+s <file>
+```
+
 ## `/dev/null`
 
 `/dev/null` is a black hole where any data sent, **will be discarded**. Redirecting a stream into it means **hiding an output**.
@@ -152,53 +206,52 @@ Alright man...
 
 file tests:
 
-| Operator syntax     | Description                                                              |
-| ------------------- | ------------------------------------------------------------------------ |
-| -e <FILE>           | True if <FILE> exists.                                                   |
-| -f <FILE>           | True, if <FILE> exists and is a regular file.                            |
-| -d <FILE>           | True, if <FILE> exists and is a directory.                               |
-| -r <FILE>           | True, if <FILE> exists and is readable.                                  |
-| -w <FILE>           | True, if <FILE> exists and is writable.                                  |
-| -x <FILE>           | True, if <FILE> exists and is executable.                                |
-| -s <FILE>           | True, if <FILE> exists and has size bigger than 0 (not empty).           |
-| <FILE1> -nt <FILE2> | True, if <FILE1> is newer than <FILE2> (mtime).                          |
-| <FILE1> -ot <FILE2> | True, if <FILE1> is older than <FILE2> (mtime).                          |
-| <FILE1> -ef <FILE2> | True, if <FILE1> and <FILE2> refer to the same device and inode numbers. |
-| ...                 | ...                                                                      |
+| Operator syntax | Description                                                          |
+| --------------- | -------------------------------------------------------------------- |
+| -e file         | True if file exists.                                                 |
+| -f file         | True, if file exists and is a regular file.                          |
+| -d file         | True, if file exists and is a directory.                             |
+| -r file         | True, if file exists and is readable.                                |
+| -w file         | True, if file exists and is writable.                                |
+| -x file         | True, if file exists and is executable.                              |
+| -s file         | True, if file exists and has size bigger than 0 (not empty).         |
+| file1 -nt file2 | True, if file1 is newer than file2 (mtime).                          |
+| file1 -ot file2 | True, if file1 is older than file2 (mtime).                          |
+| file1 -ef file2 | True, if file1 and file2 refer to the same device and inode numbers. |
+| ...             | ...                                                                  |
 
 String tests
 
-| Operator syntax        | Description                                                     |
-| ---------------------- | --------------------------------------------------------------- |
-| -z <STRING>            | True, if <STRING> is empty.                                     |
-| -n <STRING>            | True, if <STRING> is not empty (this is the default operation). |
-| <STRING1> = <STRING2>  | True, if the strings are equal.                                 |
-| <STRING1> != <STRING2> | True, if the strings are not equal.                             |
-| ...                    | ...                                                             |
+| Operator syntax    | Description                                                   |
+| ------------------ | ------------------------------------------------------------- |
+| -z string          | True, if string is empty.                                     |
+| -n string          | True, if string is not empty (this is the default operation). |
+| string1 = string2  | True, if the strings are equal.                               |
+| string1 != string2 | True, if the strings are not equal.                           |
+| ...                | ...                                                           |
 
 Arithmetic tests
 
-| Operator syntax           | Description                                                     |
-| ------------------------- | --------------------------------------------------------------- |
-| <INTEGER1> -eq <INTEGER2> | True, if the integers are equal.                                |
-| <INTEGER1> -ne <INTEGER2> | True, if the integers are NOT equal.                            |
-| <INTEGER1> -le <INTEGER2> | True, if the first integer is less than or equal second one.    |
-| <INTEGER1> -ge <INTEGER2> | True, if the first integer is greater than or equal second one. |
-| <INTEGER1> -lt <INTEGER2> | True, if the first integer is less than second one.             |
-| <INTEGER1> -gt <INTEGER2> | True, if the first integer is greater than second one.          |
+| Operator syntax       | Description                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| integer1 -eq integer2 | True, if the integers are equal.                                |
+| integer1 -ne integer2 | True, if the integers are NOT equal.                            |
+| integer1 -le integer2 | True, if the first integer is less than or equal second one.    |
+| integer1 -ge integer2 | True, if the first integer is greater than or equal second one. |
+| integer1 -lt integer2 | True, if the first integer is less than second one.             |
+| integer1 -gt integer2 | True, if the first integer is greater than second one.          |
 
 Misc syntax
 
-| Operator syntax    | Description                                                                                                          |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| <TEST1> -a <TEST2> | True, if <TEST1> and <TEST2> are true (AND).                                                                         |
-| <TEST1> -o <TEST2> | True, if either <TEST1> or <TEST2> is true (OR).                                                                     |
-| ! <TEST>           | True, if <TEST> is false (NOT).                                                                                      |
-| ( <TEST> )         | Group a test (for precedence). Attention: In normal shell-usage, the "(" and ")" must be escaped; use "\(" and "\)"! |
-| -o <OPTION_NAME>   | True, if the shell option <OPTION_NAME> is set.                                                                      |
-| -v <VARIABLENAME>  | True if the variable <VARIABLENAME> has been set. Use var[n] for array elements.                                     |
-| -R <VARIABLENAME>  | True if the variable <VARIABLENAME> has been set and is a nameref variable (since 4.3-alpha)                         |
-
+| Operator syntax  | Description                                                                                                          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------- |
+| test1 -a test2   | True, if test1 and test2 are true (AND).                                                                             |
+| test1 -o test2   | True, if either test1 or test2 is true (OR).                                                                         |
+| ! test           | True, if test is false (NOT).                                                                                        |
+| ( test )         | Group a test (for precedence). Attention: In normal shell-usage, the "(" and ")" must be escaped; use "\(" and "\)"! |
+| -o option_name   | True, if the shell option option_name is set.                                                                        |
+| -v variable_name | True if the variable variable_name has been set. Use var[n] for array elements.                                      |
+| -R variable_name | True if the variable variable_name has been set and is a nameref variable (since 4.3-alpha)                          |
 
 ## backup a file
 
