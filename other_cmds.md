@@ -4,6 +4,10 @@
 
 [Advanced Bash-Scripting Guide](https://www.tldp.org/LDP/abs/html/why-shell.html)
 
+Linux machine boots up, it executes the shell scripts in `/etc/rc.d` to restore the system configuration and set up services
+
+Bash: Bourne-Again shell
+
 ## add commands
 
 shopt, eval, chown
