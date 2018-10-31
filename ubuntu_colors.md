@@ -98,3 +98,17 @@ fi
 not sure if `PS1='${debian_chroot:+($debian_chroot)}'` is needed.
 
 if you forget to put `\` backslash before the `$(parse_git_branch)`, it will be evaluated only once and wotn be updated.
+
+## Git configuration
+
+To deal with line endings:
+Linux should be enough.
+
+File has CRLF line-ends in windows, LF in Unix.
+
+```bash
+# On Linux:
+$ git config --global core.autocrlf input
+# On Windows:
+$ git config --global core.autocrlf true
+```
