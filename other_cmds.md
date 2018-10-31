@@ -1,5 +1,9 @@
 # Linux general
 
+## bash scripting
+
+[Advanced Bash-Scripting Guide](https://www.tldp.org/LDP/abs/html/why-shell.html)
+
 ## add commands
 
 shopt, eval, chown
