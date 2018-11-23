@@ -114,13 +114,33 @@ Two lines above this line is empty.
 ```
 
 7. Highlighting the search using `GREP_OPTIONS`
+
 ```bash
 $ export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8'
 ```
 
-8. Searching in all files recursively using `grep -r`, `grep -R` or `grep --recursive`
+8. Serach for all files
 
-Search in all the files under the current directory and its sub directories
+Search for all files in this directory excluding hidden files
+
+```bash
+$ grep PS1 * 2>/dev/null 
+hist.txt: 1124  echo $PS1
+```
+
+Search for all files in this directory including hidden files
+
+```bash
+$ grep PS1 * .* 2>/dev/null 
+hist.txt: 1124  echo $PS1
+.bash_history:echo $PS1
+.bashrc:    PS1='${debian_chroot:+($debian_chroot)}'
+```
+
+Searching in all files recursively using `grep -r`, `grep -R` or `grep --recursive`
+
+Search in all the files and folders under the current directory.
+
 ```bash
 $ grep -r "Its" *
 ```
