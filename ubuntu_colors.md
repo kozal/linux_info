@@ -112,3 +112,25 @@ $ git config --global core.autocrlf input
 # On Windows:
 $ git config --global core.autocrlf true
 ```
+
+## vim color configuration
+
+```bash
+vim ~/.vimrc
+```
+
+`.vimrc` file should look like:
+
+```txt
+syntax on
+colo molokai
+```
+
+it is also enable syntax highlight and change color scheme with commands in `vim`
+
+```txt
+:syntax enable
+:colorscheme molokai
+```
+
+vim color schemes [link](https://github.com/flazz/vim-colorschemes)

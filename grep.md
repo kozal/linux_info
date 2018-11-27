@@ -42,6 +42,7 @@ demo_file1:And this is the last line.
 ```
 
 3. Case insensitive `grep -i`
+
 ```bash
 $ grep -i "the" demo_file
 THIS LINE IS THE 1ST UPPER CASE LINE IN THIS FILE.
@@ -119,7 +120,7 @@ Two lines above this line is empty.
 $ export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8'
 ```
 
-8. Serach for all files
+8. Search for all files
 
 Search for all files in this directory excluding hidden files
 
