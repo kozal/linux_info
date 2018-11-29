@@ -31,8 +31,8 @@ $ cd /usr/bin
 ```bash
 # long format and sort by modification time -t
 $ ls -lt
--rw-r--r--    1 omer  staff  13042 Mar  6  2018 dotinfo
-└─ type └─ perm      └─ num links   └─ size └─ last modif  └─ name
+-rw-r--r--       1            omer  staff  13042   Mar  6  2018  dotinfo
+└─ type └─ perm  └─ num links              └─ size └─ last modif └─ name
 # reverse list -r
 $ ls -ltr
 # sort by size
@@ -40,6 +40,7 @@ $ ls -lS
 # list more than one dir
 $ ls /etc /usr
 ```
+
 ## file
 
 ```bash
