@@ -261,17 +261,23 @@ Misc syntax
 | -v variable_name | True if the variable variable_name has been set. Use var[n] for array elements.                                      |
 | -R variable_name | True if the variable variable_name has been set and is a nameref variable (since 4.3-alpha)                          |
 
-## backup a file
+## brace expansion
+
+Standard expansion with {x,y,z}:
 
 ```bash
-$ cp filename{,.bak}
+$ echo foo{bar,baz,blam}
+foobar foobaz fooblam
+# backup a file
+$ cp filename{,.bak} # expands to `cp filename filename.bak`
 $ cp filename filename.bak
 ```
 
+Sequence expansion with {x..y}:
+
 ```bash
-$ ls
-foo
-$ cp foo{,.bak}     # expands to `cp foo foo.bak`
-$ ls
-foo foo.bak
+$ echo {a..z}
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+$ echo {a..f}{0..3}
+a0 a1 a2 a3 b0 b1 b2 b3 c0 c1 c2 c3 d0 d1 d2 d3 e0 e1 e2 e3 f0 f1 f2 f3
 ```

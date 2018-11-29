@@ -14,10 +14,13 @@
         "MD013": false,
         "MD014": false,
         "MD031": false,
-        "MD032": false
+        "MD032": false,
+        "MD033": false
     },
-    // "cSpell.enabled": false,
+    "cSpell.enabled": false,
     // "cSpell.enabled": true,
     "markdown-preview-enhanced.enableCriticMarkupSyntax": false,
-    "markdown-preview-enhanced.scrollSync": false
+    "markdown-preview-enhanced.scrollSync": false,
+    "markdown-preview-enhanced.breakOnSingleNewLine": false,
+    // "git.enabled": false
 }
