@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -66,23 +66,23 @@ BGreen="\[\033[1;32m\]"       # Green
 Cyan="\[\033[0;36m\]"         # Cyan
 BCyan="\[\033[1;36m\]"        # Cyan
 
-Time24hm="\A"		      # 24-hour HH:MM
+Time24hm="\A"                 # 24-hour HH:MM
 
 parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     PS1='${debian_chroot:+($debian_chroot)}'
-    PS1+="\[\033]0;\w\007\]";		# header of window
-    PS1+="${Color_Off}\n"; 		# newline
-    PS1+="${Yellow}\u";	 	        # user name
-    PS1+="${Color_Off}@${Time24hm} ";	# time
+    PS1+="\[\033]0;\w\007\]";       # header of window
+    PS1+="${Color_Off}\n";          # newline
+    PS1+="${Yellow}\u";             # user name
+    PS1+="${Color_Off}@${Time24hm} ";   # time
     PS1+="${Color_Off}in ";
-    PS1+="${Cyan}\w"; 		        # working dir all
-    #PS1+="${BGreen}\W"; 		# working dir base
+    PS1+="${Cyan}\w";               # working dir all
+    #PS1+="${BGreen}\W";            # working dir base
     PS1+="${Red}\$(parse_git_branch)" # git branch
     PS1+="${Color_Off}\n\$ "            # next line and prompt sign
 else

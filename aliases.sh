@@ -7,24 +7,25 @@ alias ll='ls -l'
 
 case "$TERM" in
 xterm*)
-	# The following programs are known to require a Win32 Console
-	# for interactive usage, therefore let's launch them through winpty
-	# when run inside `mintty`.
-	for name in node ipython php php5 psql python2.7
-	do
-		case "$(type -p "$name".exe 2>/dev/null)" in
-		''|/usr/bin/*) continue;;
-		esac
-		alias $name="winpty $name.exe"
-	done
-	;;
+    # The following programs are known to require a Win32 Console
+    # for interactive usage, therefore let's launch them through winpty
+    # when run inside `mintty`.
+    for name in node ipython php php5 psql python2.7
+    do
+        case "$(type -p "$name".exe 2>/dev/null)" in
+        ''|/usr/bin/*) continue;;
+        esac
+        alias $name="winpty $name.exe"
+    done
+    ;;
 esac
 
 # some more ls aliases
-alias ll='ls -lAF'  # long excluding . ..
+alias ll='ls -lAFh'  # long excluding . ..
 alias la='ls -laF'  # long all
 alias l='ls -lF'    # long
 alias lsd="ll | grep --color=never '^d'" # only directories
+alias lsd='ls -d */' # only directories
 
 # enable color for commands
 alias grep='grep --color=auto'
@@ -38,7 +39,7 @@ alias home='cd /etc/profile.d'
 # alias gitdir='cd /d/GitHub'
 
 # commands
-alias c='clear'
+# alias c='clear'
 alias expl='explorer.exe .'
 alias path='echo -e ${PATH//:/\\n}'
 # alias ffmpeg='ffmpeg -hide_banner'
