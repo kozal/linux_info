@@ -58,7 +58,6 @@ syscall: to expose specific functionality to user
 
 terminal: command line interface
 
-
 in UBuntu, the first user is Admin.
 
 ```bash
