@@ -284,8 +284,6 @@ lrwxrwxrwx 1 omer omer    3 Ara  1 12:07 fun-sym -> fun
 
 ## Chapter 5. Working with Commands
 
-https://www.safaribooksonline.com/library/view/the-linux-command/9781593273897/ch05.html
-
 ### type
 
 displays the kind of command the shell will execute
@@ -374,11 +372,11 @@ $ whatis ls
 ls                   (1)  - list directory contents
 ```
 
-## info
+### info
 
 Display a program’s info entry
 
-## alias
+### alias
 
 alias a name followed **immediately** (no whitespace allowed) by an equal sign, which is followed **immediately** by a quoted string containing the meaning to be assigned to the name.
 
@@ -389,3 +387,82 @@ $ type foo
 foo is aliased to 'cd /usr; ls; cd -'
 $ unalias foo
 ```
+
+## Chapter 6. Redirection
+
+redirect the input and output of commands to and from files.
+
+everything is a file
+
+First three of the file streams are referred as `standard input`, `output`, and `error`, the shell references them internally as file descriptors `0`, `1`, and `2`, respectively
+
+`ls` actually send their results to a special file called `standard output` (often expressed as `stdout`) and their status messages to another file called `standard error` (`stderr`).
+
+> By default, both standard output and standard error are linked to the screen and not saved into a disk file.
+
+many programs take input from a facility called `standard input` (`stdin`),
+
+> by default, standard input is attached to the keyboard.
+
+I/O redirection
+: allows us to change where output goes and where input comes from.
+
+### Redirecting Standard Output
+
+`>`
+: redirection operator
+
+`>>`
+: append redirected output to a file instead of overwriting the file from the beginning
+
+```bash
+$ ls -l /usr/bin > ls-output.txt
+# non-existent dir /bin/usr. file is zeroed
+$ ls -l /bin/usr > ls-output.txt
+ls: /bin/usr: No such file or directory
+# create a new empty file
+$ > ls-output.txt
+```
+
+### Redirecting Standard Error
+
+ To redirect standard error we must refer to its *file descriptor*.
+
+ standard error is the same as file descriptor 2
+
+ ```bash
+ $ ls -l /bin/usr 2> ls-error.txt
+ ```
+
+### Redirecting Standard Output and Standard Error to One File
+
+traditional way, which works with old versions of the shell
+
+First we redirect standard output to the file ls-output.txt, and then we redirect file descriptor 2 (standard error) to file descriptor 1 (standard output) using the notation `2>&1`.
+
+```bash
+$ ls -l /bin/usr > ls-output.txt 2>&1
+```
+
+ > The redirection of standard error must always occur after redirecting standard output
+
+- `> ls-output.txt 2>&1` redirects standard error to the file ls-output.txt
+- `2>&1 > ls-output.txt`, standard error is directed to the screen.
+
+Recent versions of bash provide a second, more streamlined method:
+
+```bash
+$ ls -l /bin/usr &> ls-output.txt
+```
+
+### Disposing of Unwanted Output
+
+The system provides a way to throw it away output by redirecting output to a special file called `/dev/null`.
+
+This file is a system device called a *bit bucket*, which accepts input and does nothing with it.
+
+```bash
+$ ls -l /bin/usr 2> /dev/null
+```
+
+https://www.safaribooksonline.com/library/view/the-linux-command/9781593273897/ch06.html
