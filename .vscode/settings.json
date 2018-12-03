@@ -1,10 +1,4 @@
 {
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-    "terminal.integrated.shellArgs.windows": [
-        "--login",
-        "--init-file",
-        "C:\\Program Files\\Git\\etc\\profile"
-    ],
     "editor.rulers": [
         79,
         119
@@ -19,8 +13,8 @@
     },
     "cSpell.enabled": false,
     // "cSpell.enabled": true,
-    "markdown-preview-enhanced.enableCriticMarkupSyntax": false,
-    "markdown-preview-enhanced.scrollSync": false,
+    // "markdown-preview-enhanced.enableCriticMarkupSyntax": false,
+    // "markdown-preview-enhanced.scrollSync": false,
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
     // "git.enabled": false
 }
