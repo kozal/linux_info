@@ -285,3 +285,107 @@ lrwxrwxrwx 1 omer omer    3 Ara  1 12:07 fun-sym -> fun
 ## Chapter 5. Working with Commands
 
 https://www.safaribooksonline.com/library/view/the-linux-command/9781593273897/ch05.html
+
+### type
+
+displays the kind of command the shell will execute
+
+```bash
+$ type cd
+cd is a shell builtin
+$ type ls
+ls is aliased to `command ls -G'
+```
+
+### which
+
+display an executable's location
+
+### help
+
+Get Help for Shell Builtins
+
+```bash
+$ help cd
+cd: cd [-L|-P] [dir]
+  Change the current directory to DIR. The variable $HOME is the default DIR...
+  The -P option says to use the physical directory structure instead of following symbolic links; 
+  the -L option forces symbolic links to be followed.
+```
+A note on notation
+: When square brackets appear in the description of a command’s syntax, they indicate optional items. A vertical bar character indicates mutually exclusive items. An example is the cd command above: `cd [-L|-P] [dir]`.
+
+### --help
+
+Display Usage Information
+
+Many executable programs support a `--help` option that displays a description of the command’s supported syntax and options.
+
+```bash
+$ mkdir --help
+```
+
+### man
+
+Display a Program’s Manual Page
+
+```help
+$ man ls
+```
+
+The “manual” that man displays is broken into sections and covers not only user commands but also system administration commands, programming interfaces, file formats, and more
+
+| section | contents                                                                                |
+| ------- | --------------------------------------------------------------------------------------- |
+| 1       | Executable programs or shell commands                                                   |
+| 2       | System calls (functions provided by the kernel)                                         |
+| 3       | Library calls (functions within program libraries)                                      |
+| 4       | Special files (usually found in /dev)                                                   |
+| 5       | File formats and conventions eg /etc/passwd                                             |
+| 6       | Games                                                                                   |
+| 7       | Miscellaneous   (including  macro  packages  and  conventions),  e.g.  man(7), groff(7) |
+| 8       | System administration commands (usually only for root)                                  |
+| 9       | Kernel routines [Non standard]                                                          |
+
+If we don’t specify a section number, we will always get the first instance of a match, probably in section 1
+
+To specify a section number:
+
+```bash
+# man section search_term
+$ man 5 passwd
+```
+
+### apropos = man -k
+
+Display appropriate commands
+
+```bash
+$ apropos top
+$ man -k top
+```
+
+### whatis
+
+Displays the name and a one-line description of a man page matching a specified keyword
+
+```bash
+$ whatis ls
+ls                   (1)  - list directory contents
+```
+
+## info
+
+Display a program’s info entry
+
+## alias
+
+alias a name followed **immediately** (no whitespace allowed) by an equal sign, which is followed **immediately** by a quoted string containing the meaning to be assigned to the name.
+
+```bash
+# alias name='string'
+$ alias foo='cd /usr; ls; cd -'
+$ type foo
+foo is aliased to 'cd /usr; ls; cd -'
+$ unalias foo
+```
