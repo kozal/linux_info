@@ -16,5 +16,11 @@
     // "markdown-preview-enhanced.enableCriticMarkupSyntax": false,
     // "markdown-preview-enhanced.scrollSync": false,
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
-    // "git.enabled": false
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#242424",
+        "titleBar.inactiveForeground": "#343434",
+        "titleBar.activeBackground": "#b46c0d",
+        "titleBar.border": "#b46c0d"
+        // "titleBar.inactiveBackground": "#ff0000"
+    }
 }
