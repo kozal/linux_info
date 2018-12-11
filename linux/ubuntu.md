@@ -15,20 +15,20 @@ $ export PATH=$PATH:directory
 
 A **login shell** session is one in which we are prompted for our user name and password; when we start a virtual console session.
 
-| File            | Contents                                                  |
-| --------------- | ----------------------------------------------------------|
-| /etc/profile    | A global configuration script that applies to all users.<br> *employs /etc/bash.bashrc and files in /etc/profile.d*|
-| ~/.bash_profile | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script.|
-| ~/.bash_login   | If ~/.bash_profile is not found, bash attempts to read this script. |
+| File            | Contents                                                                                                                                                       |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| /etc/profile    | A global configuration script that applies to all users.<br> *employs /etc/bash.bashrc and files in /etc/profile.d*                                            |
+| ~/.bash_profile | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script.                                             |
+| ~/.bash_login   | If ~/.bash_profile is not found, bash attempts to read this script.                                                                                            |
 | ~/.profile      | If neither ~/.bash_profile nor ~/.bash_login is found, bash attempts to read this file.<br> This is the default in Debian-based distributions, such as Ubuntu. |
 
 A **non-login shell** session typically occurs when we launch a terminal session in the GUI.
 
 non-login shells also inherit the environment from their parent process
 
-| File             | Contents                                                 |
-| ---------------- | ---------------------------------------------------------|
-| /etc/bash.bashrc | A global configuration script that applies to all users. |
+| File             | Contents                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| /etc/bash.bashrc | A global configuration script that applies to all users.                                                           |
 | ~/.bashrc        | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script. |
 
 ~/.bashrc
@@ -42,6 +42,9 @@ Sal Kas 20 15:04:18 +03 2018
 # custom format
 $ date +"%A, %B %-d, %Y"
 Salı, Kasım 20, 2018
+# for back-up
+$ date +%Y%m%d
+20181211
 ```
 
 ### correcting time
