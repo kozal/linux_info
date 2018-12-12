@@ -17,10 +17,10 @@
     // "markdown-preview-enhanced.scrollSync": false,
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
     "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#242424",
-        "titleBar.inactiveForeground": "#343434",
-        "titleBar.activeBackground": "#b46c0d",
-        "titleBar.border": "#b46c0d"
+        "titleBar.activeForeground": "#cecece",
+        "titleBar.inactiveForeground": "#acacac",
+        "titleBar.activeBackground": "#AF601A",
+        "titleBar.border": "#AF601A"
         // "titleBar.inactiveBackground": "#ff0000"
     }
 }
