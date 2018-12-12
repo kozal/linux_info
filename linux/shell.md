@@ -20,20 +20,20 @@ $ PATH="$HOME/bin:$HOME/.local/bin:$PATH
 
 A **login shell** session is one in which we are prompted for our user name and password; when we start a virtual console session.
 
-| File            | Contents                                                  |
-| --------------- | ----------------------------------------------------------|
-| /etc/profile    | A global configuration script that applies to all users.<br> *employs /etc/bash.bashrc and files in /etc/profile.d*|
-| ~/.bash_profile | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script.|
-| ~/.bash_login   | If ~/.bash_profile is not found, bash attempts to read this script. |
+| File            | Contents                                                                                                                                                       |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| /etc/profile    | A global configuration script that applies to all users.<br> *employs /etc/bash.bashrc and files in /etc/profile.d*                                            |
+| ~/.bash_profile | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script.                                             |
+| ~/.bash_login   | If ~/.bash_profile is not found, bash attempts to read this script.                                                                                            |
 | ~/.profile      | If neither ~/.bash_profile nor ~/.bash_login is found, bash attempts to read this file.<br> This is the default in Debian-based distributions, such as Ubuntu. |
 
 A **non-login shell** session typically occurs when we launch a terminal session in the GUI.
 
 non-login shells also inherit the environment from their parent process
 
-| File             | Contents                                                 |
-| ---------------- | ---------------------------------------------------------|
-| /etc/bash.bashrc | A global configuration script that applies to all users. |
+| File             | Contents                                                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| /etc/bash.bashrc | A global configuration script that applies to all users.                                                           |
 | ~/.bashrc        | A user's personal startup file.<br> Can be used to extend or override settings in the global configuration script. |
 
 ~/.bashrc
@@ -81,4 +81,50 @@ echo "<html>
    <title>
    The title of your page
 #..."
+```
+
+### command substitution and quoting
+
+Command substitution allows the output of a command to replace the command itself. Command substitution occurs when a command is enclosed as follows:
+
+```bash
+$(command)
+#or
+`command`
+```
+
+Single quotes won't interpolate anything, but double quotes will. For example: variables, backticks, certain `\` escapes, etc
+
+- Enclosing characters in single quotes (`'`) preserves the literal value of each character within the quotes.
+  - A single quote may not occur between single quotes, even when preceded by a backslash.
+
+- Enclosing characters in double quotes (`"`) preserves the literal value of all characters within the quotes, with the exception of `$`, `` ` `` (backtick) , `\`, and, when history expansion is enabled, `!`.
+  - The backslash retains its special meaning only when followed by one of the following characters: `$`, `` ` ``, `"`, `\`, or newline. Within double quotes, backslashes that are followed by one of these characters are removed. Backslashes preceding characters without a special meaning are left unmodified.
+
+```bash
+$ echo $(date +%Y%m%d)
+20181211
+$ echo `date +%Y%m%d`
+20181211
+$ echo "date +%Y%m%d"
+date +%Y%m%d
+$ echo 'date +%Y%m%d'
+date +%Y%m%d
+
+# double quotes
+$ echo "$(echo "upg")"
+upg
+$ echo "$(echo 'upg')"
+upg
+# single quotes
+$ echo '$(echo "upg")'
+$(echo "upg")
+$ echo '$(echo 'upg')'
+$(echo upg)
+```
+
+## for
+
+```bash
+$ for i in `seq 1 10001`; do echo $i; done
 ```
