@@ -125,14 +125,14 @@ $ export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8'
 Search for all files in this directory excluding hidden files
 
 ```bash
-$ grep PS1 * 2>/dev/null 
+$ grep PS1 * 2>/dev/null
 hist.txt: 1124  echo $PS1
 ```
 
 Search for all files in this directory including hidden files
 
 ```bash
-$ grep PS1 * .* 2>/dev/null 
+$ grep PS1 * .* 2>/dev/null
 hist.txt: 1124  echo $PS1
 .bash_history:echo $PS1
 .bashrc:    PS1='${debian_chroot:+($debian_chroot)}'
