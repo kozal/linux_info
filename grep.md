@@ -371,6 +371,61 @@ history | grep "git commit" | grep "dotfile"
 
 ### Regular expressions
 
+#### single character
+
+The `.` character (period, or dot) matches any one character
+
+```bash
+$ echo -e "ali.omer\nali_omer" | grep -n ali.omer
+1:ali.omer
+2:ali_omer
+$ echo -e "ali.omer\nali_omer" | grep -n "ali.omer"
+1:ali.omer
+2:ali_omer
+$ echo -e "ali.omer\nali_omer" | grep -n ali\.omer
+1:ali.omer
+2:ali_omer
+$ echo -e "ali.omer\nali_omer" | grep -n "ali\.omer"
+1:ali.omer
+```
+
+#### multiple characters
+
+```bash
+$ echo -e "aliomer\nali_omer\nali_aa_omer" | grep -n 'ali.*omer'
+1:aliomer
+2:ali_omer
+3:ali_aa_omer
+```
+
+#### Anchors
+
+use `^` and `$` to force a regex to match only at the start or end of a line, respectively.
+
+```bash
+$ echo -e "ali.omer\nmr ali_omer k" | grep -n "ali"
+1:ali.omer
+2:mr ali_omer k
+$ echo -e "ali.omer\nmr ali_omer k" | grep -n "^ali"
+1:ali.omer
+$ echo -e "ali.omer\nmr ali_omer k" | grep -n "^omer"
+$ echo -e "ali.omer\nmr ali_omer k" | grep -n "omer$"
+1:ali.omer
+$ echo -e "Aliomer\nali_omer" | grep -n '[[:upper:]]'
+1:Aliomer
+```
+
+#### sets of characters
+
+```bash
+$ echo -e "aliomer\nali1_omer" | grep -n "ali[0-9]"
+2:ali1_omer
+$ echo -e "aliomer\nali1_omer" | grep -n "ali[A-Za-z]"
+1:aliomer
+```
+
+### cont
+
 Grep uses POSIX regular expressions by default.
 Not perl compatible regex
 
