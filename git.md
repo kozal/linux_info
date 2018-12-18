@@ -214,6 +214,7 @@ $ git config --global grep.lineNumber true
 $ git config --global color.grep.filename magenta
 $ git config --global color.grep.linenumber green
 $ git config --global color.grep.match red
+$ git config --global alias.df 'diff --name-only'
 
 # with --no-pager
 $ git config --global alias.lg '!git --no-pager log --graph --pretty=format:"%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
