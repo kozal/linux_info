@@ -1,5 +1,16 @@
 # Ubuntu notes
 
+## version
+
+```bash
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.5 LTS
+Release:	16.04
+Codename:	xenial
+```
+
 ## path
 
 ```bash
