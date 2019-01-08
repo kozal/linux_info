@@ -36,6 +36,28 @@ $(echo upg)
 
 ### 3.5. Shell expansions
 
+#### 3.5.1 Brace Expansion
+
+Patterns to be brace expanded take the form of an optional *preamble*, followed by **either a series of comma-separated strings or a sequence expression between a pair of braces**, followed by an optional *postscript*.
+
+A correctly-formed brace expansion must contain unquoted opening and closing braces, and at least one unquoted comma or a valid sequence expression.
+
+- Brace expansions may be nested. **left to right order** is preserved.
+- sequence expression takes the form `{x..y[..incr]}`. Note that both x and y must be of the same type. When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.
+
+```bash
+$ echo a{d,c,b}e
+ade ace abe
+$ echo a{1..5}e
+a1e a2e a3e a4e a5e
+$ echo a{1..7..2}e
+a1e a3e a5e a7e
+
+$ mkdir /home/omer/temp/{old,new,dist,bugs}
+$ ls /home/omer/temp
+bugs  dist  new  old
+```
+
 #### 3.5.4. command substitution
 
 Command substitution allows the output of a command to replace the command itself. Command substitution occurs when a command is enclosed as follows:
