@@ -97,7 +97,7 @@ fi
 
 not sure if `PS1='${debian_chroot:+($debian_chroot)}'` is needed.
 
-if you forget to put `\` backslash before the `$(parse_git_branch)`, it will be evaluated only once and wotn be updated.
+if you forget to put `\` backslash before the `$(parse_git_branch)`, it will be evaluated only once and wont be updated.
 
 ## Git configuration
 
