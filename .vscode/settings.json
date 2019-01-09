@@ -17,7 +17,8 @@
     // "markdown-preview-enhanced.scrollSync": false,
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
     "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#cecece",
+        // "titleBar.activeForeground": "#cecece",
+        "titleBar.activeForeground": "#f8f8f8",
         "titleBar.inactiveForeground": "#acacac",
         "titleBar.activeBackground": "#AF601A",
         "titleBar.border": "#AF601A"
