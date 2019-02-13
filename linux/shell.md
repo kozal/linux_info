@@ -128,3 +128,80 @@ $(echo upg)
 ```bash
 $ for i in `seq 1 10001`; do echo $i; done
 ```
+
+## set
+
+These lines deliberately cause your script to fail
+```bash
+#!/bin/bash
+set -euo pipefail
+
+# or
+set -e
+set -u
+set -o pipefail
+```
+
+set -e
+:   The set -e option instructs bash to immediately exit if any command has a non-zero exit status. You wouldn't want to set this for your command-line shell, but in a script it's massively helpful
+
+set -u
+:   set -u affects variables. When set, a reference to any variable you haven't previously defined - with the exceptions of `$*` and `$@` - is an error, and causes the program to immediately exit.
+
+set -o pipefail
+:   This setting prevents errors in a pipeline from being masked. If any command in a pipeline fails, that return code will be used as the return code of the whole pipeline. By default, the pipeline's return code is that of the last command - even if it succeeds.
+
+```bash
+$ grep some-string /non/existent/file | sort
+grep: /non/existent/file: No such file or directory
+$ echo $?
+0
+```
+
+Here, `grep` has an exit code of `2`, writes an error message to `stderr`, and an empty string to `stdout`. This empty string is then passed through `sort`, which happily accepts it as valid input, and returns a status code of `0`. This is fine for a command line, but bad for a shell script: you almost certainly want the script to exit right then with a nonzero exit code...
+
+```bash
+$ set -o pipefail
+$ grep some-string /non/existent/file | sort
+grep: /non/existent/file: No such file or directory
+$ echo $?
+2
+```
+
+## IFS
+
+The `IFS` variable - which stands for `Internal Field Separator` - controls what Bash calls word splitting.
+
+When set to a string, each character in the string is considered by Bash to separate words. This governs how bash will iterate through a sequence.
+
+```bash
+#!/bin/bash
+names=(
+  "Aaron Maxwell"
+  "Wayne Gretzky"
+)
+
+echo "With default IFS value..."
+for name in ${names[@]}; do
+  echo "$name"
+done
+
+echo ""
+echo "With strict-mode IFS value..."
+IFS=$'\n\t'
+for name in ${names[@]}; do
+  echo "$name"
+done
+```
+
+```txt
+With default IFS value...
+Aaron
+Maxwell
+Wayne
+Gretzky
+
+With strict-mode IFS value...
+Aaron Maxwell
+Wayne Gretzky
+```
