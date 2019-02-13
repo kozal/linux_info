@@ -133,7 +133,7 @@ $ tree /etc -L 2 -d
 
 `ls` is `ls .` lists files in current dir.
 
-`ls -d` is `ls -d .`. Only to confirm if a directory exists (`.` in this case). It does not lists the subdirs.
+`ls -d` is `ls -d .`. Only to confirm if a directory exists (`.` in this case). It does not lists the files and subdirs in the directory.
 
 ```bash
 # list one file per line
@@ -219,3 +219,50 @@ display Linux processes
   - %CPU: `P`
   - TIME+: `T`
 - Reverse/Normal-Sort-Field toggle: `R`
+
+## disk usage
+
+```bash
+$ df -hT
+```
+
+## snap
+
+remove disabled/unused snap packages:
+
+```bash
+$ snap list --all
+spotify          1.0.96.181.gf6bc1b6b-12  30    stable    spotify✓         -
+spotify          1.0.94.262.g3d5c231c-9   28    stable    spotify✓         disabled
+spotify          1.0.93.244.g1e3a05e7-18  26    stable    spotify✓         disabled
+
+$ sudo snap remove spotify --revision 26
+spotify (revision 26) removed
+$ sudo snap remove spotify --revision 28
+spotify (revision 28) removed
+
+$ snap list --all
+spotify          1.0.96.181.gf6bc1b6b-12  30    stable    spotify✓         -
+```
+
+## tar
+
+### compress
+
+```bash
+$ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+# multiple dirs
+$ tar -czvf archive.tar.gz /home/ubuntu/Downloads /usr/local/stuff /home/ubuntu/Documents/notes.txt
+# exclude dirs
+$ tar -czvf archive.tar.gz /home/ubuntu --exclude=/home/ubuntu/Downloads --exclude=/home/ubuntu/.cache
+# exclude files
+$ tar -czvf archive.tar.gz /home/ubuntu --exclude=*.mp4
+```
+
+### extract
+
+```bash
+$ tar -xzvf archive.tar.gz
+# extract to dir
+$ tar -xzvf archive.tar.gz -C /tmp
+```
