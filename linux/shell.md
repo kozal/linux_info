@@ -126,7 +126,9 @@ $(echo upg)
 ## for
 
 ```bash
+# backticks, not quotation marks
 $ for i in `seq 1 10001`; do echo $i; done
+$ for i in `seq 1 100`; do echo $i; ifconfig eth1; sleep 1; done
 ```
 
 ## set
