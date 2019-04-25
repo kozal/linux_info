@@ -5,10 +5,10 @@
 ```bash
 # view calendar in terminal
 $ cal
-# display amount of free space on your disk drives
-$ df
-# display the amount of free memory
-$ free
+# display amount of free space on your disk drives, human readable size info
+$ df -h
+# display the amount of free memory, human readable size info
+$ free -h
 ```
 
 ## cd

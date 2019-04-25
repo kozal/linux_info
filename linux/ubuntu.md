@@ -154,7 +154,7 @@ $ ls -A
 $ ls -lh
 # add an info char to end / to dirs, * to exec ...
 $ ls -lF
-# confirm file and diectory exists
+# confirm file and directory exists
 $ ls Makefile
 Makefile
 $ ls -d /opt

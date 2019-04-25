@@ -21,8 +21,8 @@ xterm*)
 esac
 
 # some more ls aliases
-alias ll='ls -lAFh'  # long excluding . ..
-alias la='ls -laF'  # long all
+alias ll='ls -hAlF'  # long excluding . ..
+alias la='ls -halF'  # long all
 alias l='ls -lF'    # long
 alias lsd="ll | grep --color=never '^d'" # only directories
 alias lsd='ls -d */' # only directories
